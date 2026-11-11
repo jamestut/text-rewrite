@@ -1,0 +1,18 @@
+{
+  "upstream": {
+    "url": "https://openai.com/v1/responses",
+    "api_key": "sk-yourapikey"
+  },
+  "models": [
+    {"key": "gpt-6-luna", "name": "GPT-6 Luna"}
+  ],
+  "default_model": "gpt-6-luna",
+  "users": [
+    {"username": "change-me", "password": "change-me"}
+  ],
+  "shared_prompt": "",
+  "prompts": [],
+  "secure_cookie": false,
+  "host": "127.0.0.1",
+  "port": 8080
+}

@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Text Rewrite</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="/static/vendor/markdown-it.min.js" defer></script>
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <main class="shell">
+    <header class="header">
+      <div>
+        <p class="eyebrow">A little help with words</p>
+        <h1>Text Rewrite</h1>
+        <p class="subtitle">Find the right words, with a subject to match.</p>
+      </div>
+      <button id="logout" class="button subtle" type="button" hidden>Sign out</button>
+    </header>
+
+    <section id="login-section" class="card login-card" hidden aria-labelledby="login-title">
+      <h2 id="login-title">Sign in</h2>
+      <p class="muted">Enter your account details to continue.</p>
+      <form id="login-form" class="stack">
+        <label>Username<input id="username" name="username" autocomplete="username" required></label>
+        <label>Password<input id="password" name="password" type="password" autocomplete="current-password" required></label>
+        <p id="login-error" class="error" role="alert" hidden></p>
+        <button id="login-button" class="button primary" type="submit">Sign in</button>
+      </form>
+    </section>
+
+    <section id="app-section" hidden aria-label="Rewrite a message">
+      <form id="rewrite-form" class="stack">
+        <div class="card stack">
+          <div class="card-heading">
+            <div><p class="eyebrow">Your message</p><h2>Start with a draft</h2></div>
+          </div>
+          <div class="selectors">
+            <label>Model<select id="model" required></select></label>
+            <label>Style<select id="style"></select></label>
+          </div>
+          <div>
+            <div class="editor-heading">
+              <label for="message">Message</label>
+              <div class="tabs" role="tablist" aria-label="Message view">
+                <button id="edit-tab" class="tab" type="button" role="tab" aria-selected="true" aria-controls="edit-panel">Write</button>
+                <button id="preview-tab" class="tab" type="button" role="tab" aria-selected="false" aria-controls="preview-panel" tabindex="-1">Preview</button>
+              </div>
+            </div>
+            <div id="edit-panel" role="tabpanel" aria-labelledby="edit-tab">
+              <textarea id="message" placeholder="Write or paste your message here. Markdown is welcome."></textarea>
+            </div>
+            <div id="preview-panel" class="preview markdown" role="tabpanel" aria-labelledby="preview-tab" hidden></div>
+            <p class="hint">Write in plain text or Markdown. Preview shows the formatted message.</p>
+          </div>
+          <p id="rewrite-error" class="error" role="alert" hidden></p>
+          <div class="actions"><button id="execute" class="button primary" type="submit">Execute</button><span id="working" class="muted" role="status" hidden>Rewriting your message...</span></div>
+        </div>
+      </form>
+
+      <section id="results" class="card stack results" hidden aria-labelledby="results-title">
+        <div><p class="eyebrow">Ready to use</p><h2 id="results-title">Your rewrite</h2></div>
+        <div class="result-block">
+          <div class="result-heading"><h3>Subject</h3><button class="button copy" type="button" data-copy="subject">Copy Markdown</button></div>
+          <div id="subject-result" class="markdown result-content"></div>
+        </div>
+        <div class="result-block">
+          <div class="result-heading"><h3>Message</h3><button class="button copy" type="button" data-copy="message">Copy Markdown</button></div>
+          <div id="message-result" class="markdown result-content"></div>
+        </div>
+        <p id="copy-status" class="hint" role="status" aria-live="polite"></p>
+      </section>
+    </section>
+  </main>
+</body>
+</html>
